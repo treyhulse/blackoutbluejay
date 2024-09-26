@@ -25,13 +25,13 @@ st.write("""
 st.header("Get Started")
 st.write("Navigate to the key sections of the app:")
 st.markdown("""
-- [Go to Dashboard](01_Dashboard.py)
-- [Manage Customers](02_Customer_Management.py)
-- [Manage Sales & Invoices](03_Sales_&_Invoices.py)
-- [Manage Inventory](04_Inventory_Management.py)
-- [Track Expenses](05_Expense_Management.py)
-- [Track Jobs & Tasks](06_Job_&_Task_Tracker.py)
-- [Track Employee Hours](07_Employee_Hours.py)
+- [Go to Dashboard](https://fencing-app-023485acfd15.herokuapp.com/Dashboard)
+- [Manage Customers](https://fencing-app-023485acfd15.herokuapp.com/Customer_Management)
+- [Manage Sales & Invoices](https://fencing-app-023485acfd15.herokuapp.com/Sales_&_Invoices)
+- [Manage Inventory](https://fencing-app-023485acfd15.herokuapp.com/Inventory_Management)
+- [Track Expenses](https://fencing-app-023485acfd15.herokuapp.com/Expense_Management)
+- [Track Jobs & Tasks](https://fencing-app-023485acfd15.herokuapp.com/Job_&_Task_Tracker)
+- [Track Employee Hours](https://fencing-app-023485acfd15.herokuapp.com/Employee_Hours)
 """)
 
 # Highlight your business use cases
@@ -46,4 +46,4 @@ st.write("🎯 **Start using this app today and simplify your business operation
 
 # Footer with Contact Info
 st.write("---")
-st.write("📧 For support or inquiries, reach out to us at [support@yourbusiness.com](mailto:support@yourbusiness.com)")
+st.write("📧 For support or inquiries, reach out to us at [treyhulse3@gmail.com](mailto:treyhulse3@gmail.com)")

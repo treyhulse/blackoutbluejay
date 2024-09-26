@@ -1,9 +1,9 @@
 from bson import ObjectId
 import streamlit as st
+import pandas as pd
 from pymongo import MongoClient
 from utils.mongo_connection import get_mongo_connection
 from st_aggrid import AgGrid, GridOptionsBuilder, GridUpdateMode
-import pandas as pd
 
 # Initialize MongoDB connection
 db = get_mongo_connection()
@@ -40,16 +40,19 @@ if collections:
         # Convert MongoDB documents to a format that can be displayed in a table
         for doc in documents:
             doc["_id"] = str(doc["_id"])  # Convert ObjectId to string for display
+        
+        # Convert documents to DataFrame
+        documents_df = pd.DataFrame(documents)
 
         # Set up AgGrid for editable table
-        gb = GridOptionsBuilder.from_dataframe(pd.DataFrame(documents))
+        gb = GridOptionsBuilder.from_dataframe(documents_df)
         gb.configure_pagination()
         gb.configure_default_column(editable=True)
         grid_options = gb.build()
 
         # Display the editable table
         grid_response = AgGrid(
-            pd.DataFrame(documents),
+            documents_df,
             gridOptions=grid_options,
             update_mode=GridUpdateMode.VALUE_CHANGED,
             fit_columns_on_grid_load=True,
@@ -57,9 +60,12 @@ if collections:
 
         updated_data = grid_response["data"]
 
+        # Convert updated data back to list of dictionaries for comparison
+        updated_data_list = updated_data.to_dict("records")
+
         # Check for changes and update the database
-        if grid_response["data"] != documents:
-            for new_row in updated_data:
+        if updated_data_list != documents:
+            for new_row in updated_data_list:
                 _id = new_row["_id"]
                 del new_row["_id"]  # Remove the ID before updating the document
                 
